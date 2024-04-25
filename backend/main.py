@@ -2,8 +2,9 @@ from flask import Flask, request,jsonify
 from flask_socketio import SocketIO,emit
 from flask_cors import CORS
 from model.src import head_pose 
-
+import cv2
 temp = 0
+# cap=None
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 CORS(app,resources={r"/*":{"origins":"*"}})
@@ -27,16 +28,21 @@ def connected():
 @socketio.on('data')
 def handle_message(data):
     """event listener when client types a message"""
-    head_pose.pose()
+    global cap
+    cap = cv2.VideoCapture(0)
+
+    head_pose.pose(cap)
 
 @socketio.on('stop')
 def handle_message(data):
     """event listener when client types a message"""
-    global temp
-    if(data=="1"):
-        exit()
-    # disconnected()
-    print(get_global())
+    # global temp
+    # if(data=="1"):
+    #     exit()
+    # # disconnected()
+    # print(get_global())
+    global cap
+    cap.release()
     print("data from the front end: ",str(data))
    
     

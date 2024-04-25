@@ -18,17 +18,17 @@ y = 0                                       # Y axis head pose
 
 X_AXIS_CHEAT = 0
 Y_AXIS_CHEAT = 0
-def pose():
+def pose(cap):
     # global temp
     global VOLUME_NORM, x, y, X_AXIS_CHEAT, Y_AXIS_CHEAT
     fd=cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
     #############################
     mp_face_mesh = mp.solutions.face_mesh
     face_mesh = mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5)
-    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture(0)
     mp_drawing = mp.solutions.drawing_utils
     # mp_drawing_styles = mp.solutions
-    
+    c=0
     tm=0
     while cap.isOpened():
         success, image = cap.read()
@@ -45,15 +45,23 @@ def pose():
             tm=tm/2
         if(len(faces)==0):
             tm+=1
-            if tm>10:
-                cv2.imwrite("GeeksForGeeks.png", image)
-                break
+            if tm>20:
+                cv2.imwrite(f'GeeksForGeeks{c}_no_face_detected.png', image)
+                print("No_face")
+                c+=1
+                tm=0
+                # break
         if(len(faces)>=2):
             tm+=2
             if(tm>40):
-                cv2.imwrite("GeeksForGeeks.png", image)
-                break
+                cv2.imwrite(f'GeeksForGeeks{c}_more_than_one_faces.png', image)
+                print("More_than_one_face")
+                c+=1
+                tm=0
+                # break
         # To improve performance
+        if(c>=5) :
+            break
         image.flags.writeable = False
         
         # Get the result
@@ -128,10 +136,10 @@ def pose():
                 # print(y)
 
                 # See where the user's head tilting
-                if y < -10:
+                if y < -8:
                     text = "Looking Left"
                     
-                elif y > 10:
+                elif y > 8:
                     text = "Looking Right"
                   
                 elif x < -10:
@@ -144,7 +152,7 @@ def pose():
                 
                 # Y is left / right
                 # X is up / down
-                if y < -10 or y > 10:
+                if y < -8 or y > 8:
                     X_AXIS_CHEAT = 1
                 else:
                     X_AXIS_CHEAT = 0
@@ -171,10 +179,20 @@ def pose():
         # if temp == 1:
         #     break
         if X_AXIS_CHEAT==1:
-            cv2.imwrite("GeeksForGeeks.png", image)
-            break
-        if cv2.waitKey(5) & 0xFF == 27:
-            break
+            print(tm);
+            if(tm>10):
+                cv2.imwrite(f'GeeksForGeeks{c}.png', image)
+                c+=1
+                tm=0
+                X_AXIS_CHEAT=0
+                print("clicked")
+            tm+=1
+            
+            
+            
+            # break
+        # if cv2.waitKey(5) & 0xFF == 27:
+            # break
 
     
 
