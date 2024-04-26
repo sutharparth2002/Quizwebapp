@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import OutlinedFlagSharpIcon from "@mui/icons-material/OutlinedFlagSharp";
-import io from 'socket.io-client'
+import io from "socket.io-client";
 // import { socket } from "../App";
 
 // const socket=io.connect("http://localhost:3001");
@@ -9,25 +9,25 @@ export const socket = io("localhost:5001/", {
   transports: ["websocket"],
   cors: {
     origin: "http://localhost:3000/",
-  }})
-
+  },
+});
 
 const Home = () => {
-  const handleClick = ()=>{
-    socket.emit('data','hi')
-    console.log("clicked")
+  const handleClick = () => {
+    socket.emit("data", "hi");
+    console.log("clicked");
   };
   return (
-    <div>
-      <div className="container flex bg-cyan-200 h-80 mt-4 shadow-2xl shadow-black rounded-3xl">
-        <div className="text-3xl  mx-6 mt-6 flex-row flex">
+    <div className="justify-center flex  mt-16">
+      <div className="w-4/5 flex bg-cyan-200 h-96 shadow-2xl shadow-black rounded-3xl">
+        <div className="text-3xl  mx-20 mt-12 flex-row flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-8 h-10"
+            className="w-12 h-12"
           >
             <path
               strokeLinecap="round"
@@ -36,17 +36,17 @@ const Home = () => {
             />
           </svg>
           <div />
-          <p className="text-green-950"> Quiz:</p>
+          <p className="text-green-950 text-4xl"> Quiz:</p>
         </div>
         <div>
-          <div className="flex flex-row mt-24 ">
+          <div className="flex flex-row  -mx-9 mt-28 w-4/3 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 "
+              className="w-7 h-7 "
             >
               <path
                 strokeLinecap="round"
@@ -54,7 +54,7 @@ const Home = () => {
                 d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
               />
             </svg>
-            <p className="text-zinc-800">RULES:</p>
+            <p className="text-zinc-800 text-xl">RULES:</p>
             <div className="flex flex-col w-fit">
               <div>
                 <ol>
@@ -63,7 +63,7 @@ const Home = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-3 h-3 mx-2 mt-2 "
+                      className="w-4 h-4 mx-2 mt-2 "
                     >
                       <path
                         fillRule="evenodd"
@@ -71,7 +71,7 @@ const Home = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <p className="font-light text-sm mt-1 text-cyan-900 text-wrap">
+                    <p className="font-light  mt-1 text-cyan-900 text-wrap text-xl">
                       Pay attention to the questions and Avoid distraction.
                     </p>
                   </li>
@@ -84,7 +84,7 @@ const Home = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-3 h-3 mx-2 mt-2 "
+                      className="w-4 h-4 mx-2 mt-2 "
                     >
                       <path
                         fillRule="evenodd"
@@ -92,7 +92,7 @@ const Home = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <p className="font-light text-sm mt-1  text-cyan-900">
+                    <p className="font-light text-xl mt-1  text-cyan-900">
                       Select only one correct option.
                     </p>
                   </li>
@@ -105,7 +105,7 @@ const Home = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-3 h-3 mx-2 mt-2 "
+                      className="w-4 h-4 mx-2 mt-2 "
                     >
                       <path
                         fillRule="evenodd"
@@ -113,7 +113,7 @@ const Home = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <p className="font-light text-sm mt-1  text-cyan-900">
+                    <p className="font-light text-xl mt-1  text-cyan-900">
                       Review your answers before submitting.
                     </p>
                   </li>
@@ -126,7 +126,7 @@ const Home = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-3 h-3 mx-2 mt-2 "
+                      className="w-4 h-4 mx-2 mt-2 "
                     >
                       <path
                         fillRule="evenodd"
@@ -134,7 +134,7 @@ const Home = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <p className="font-light text-sm mt-1  text-cyan-900">
+                    <p className="font-light text-xl mt-1  text-cyan-900">
                       Take ownership of your progress and results.
                     </p>
                   </li>
@@ -144,16 +144,15 @@ const Home = () => {
           </div>
         </div>
         <div>
-          <div className="flex flex-row mt-64">
+          <div className="flex flex-row mt-72">
             <Button
               variant="contained"
               color="secondary"
+              size="large"
               endIcon={<OutlinedFlagSharpIcon />}
-              
             >
-              
-              <a href="./Page1" onClick={handleClick}> 
-              Start...
+              <a href="./Page1" onClick={handleClick}>
+                Start...
               </a>
             </Button>
           </div>
