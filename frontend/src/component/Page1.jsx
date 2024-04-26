@@ -162,16 +162,16 @@ const Page1 = () => {
       {finalPage ? (
         <Page2 />
       ) : (
-        <div>
-          <div className="container flex bg-cyan-200 h-80 mt-4 shadow-2xl shadow-black rounded-3xl">
-            <div className="w-3/4 justify-center">
-              <div className="flex flex-row items-center justify-center w-full h-20 mx-28 bg-slate-400 mt-3 rounded-full shadow-xl shadow-slate-800">
+        <div className="justify-center flex  mt-16">
+          <div className="w-4/5 flex bg-cyan-200 h-96 shadow-2xl shadow-black rounded-3xl">
+            <div className="w-3/5 justify-center mt-4">
+              <div className="flex flex-row items-center justify-center w-full h-24 mx-52 bg-slate-400 mt-3 rounded-full shadow-xl shadow-slate-800">
                 <p className="">{questions[currentQuestion].text}</p>
               </div>
             </div>
 
-            <div className=" mt-32 -mx-96 ">
-              <Box sx={{ width: "80%" }}>
+            <div className="  flex flex-col mt-40 -mx-96  ">
+              <Box sx={{ width: "90%" }}>
                 <Grid
                   container
                   rowSpacing={2}
@@ -195,7 +195,7 @@ const Page1 = () => {
               </Box>
             </div>
 
-            <div className="mt-64 -mx-32">
+            <div className="mt-80 -mx-48">
               <div>
                 <Stack spacing={2}>
                   <Pagination
